@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/bash
 set -e
 echo "Installing btop..."
 sudo apt-get update
