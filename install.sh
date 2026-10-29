@@ -1,21 +1,17 @@
-#!/bin/bash
+#!/usr/bin/env bash
+
 set -e
 
+echo "Installing btop..."
 
-echo "Installing Grafana..."
-
-# Add Grafana APT repo
-sudo apt-get install -y software-properties-common
-sudo apt-get install -y gnupg2 curl
-curl -fsSL https://packages.grafana.com/gpg.key | sudo gpg --dearmor -o /usr/share/keyrings/grafana.gpg
-echo "deb [signed-by=/usr/share/keyrings/grafana.gpg] https://packages.grafana.com/oss/deb stable main" | sudo tee /etc/apt/sources.list.d/grafana.list
-
-# Install Grafana
 sudo apt-get update
-sudo apt-get install -y grafana
+sudo apt-get install -y btop
 
-# Start Grafana service
-sudo service grafana-server start
+# Add convenient alias if it doesn't already exist
+if ! grep -q "alias monitor='btop'" ~/.bashrc; then
+    echo "alias monitor='btop'" >> ~/.bashrc
+fi
 
-echo "Grafana installation complete!"
-echo "to use it, forward port 3000"
+echo ""
+echo "✅ btop installed"
+echo "Run 'monitor' or 'btop' after opening a new terminal."
